@@ -24,25 +24,43 @@ namespace TikTacToeWorkshop
         }
         public char UC2_SelectCharacter()//Choose one letter X or O
         {
-            Console.WriteLine("Select X or O");
-            char userLetter = Convert.ToChar(Console.ReadLine());
-            char compLetter = ' '; 
+            char userLetter, compLetter;
+            while (true)
+            {
+                Console.WriteLine("Select X or O");
+                userLetter = Convert.ToChar(Console.ReadLine());
 
-            if (userLetter == 'X')
-            {
-                compLetter = 'O';
-            }
-            else if (userLetter == 'O')
-            {
-                compLetter = 'X';
-            }
-            else
-            {
-                Console.WriteLine("Invalid Character");
+                if (userLetter == 'X' || userLetter == 'x')
+                {
+                    compLetter = 'O';
+                    break;
+                }
+                else if (userLetter == 'O' || userLetter == 'o')
+                {
+                    compLetter = 'X';
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Character");
+                }
             }
             Console.WriteLine("User Selected: " + userLetter);
             return compLetter;
 
+        }
+        //Displays the Board
+        public void UC3_displayBoard()
+        {
+            Console.WriteLine("     |     |      ");
+            Console.WriteLine("  {0}  |  {1}  |  {2}", board[1], board[2], board[3]);
+            Console.WriteLine("_____|_____|_____ ");
+            Console.WriteLine("     |     |      ");
+            Console.WriteLine("  {0}  |  {1}  |  {2}", board[4], board[5], board[6]);
+            Console.WriteLine("_____|_____|_____ ");
+            Console.WriteLine("     |     |      ");
+            Console.WriteLine("  {0}  |  {1}  |  {2}", board[7], board[8], board[9]);
+            Console.WriteLine("     |     |      ");
         }
     }
 }
