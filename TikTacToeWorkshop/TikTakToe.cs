@@ -46,7 +46,7 @@ namespace TikTacToeWorkshop
                 }
             }
             Console.WriteLine("User Selected: " + userLetter);
-            return compLetter;
+            return userLetter;
 
         }
         //Displays the Board
@@ -61,6 +61,30 @@ namespace TikTacToeWorkshop
             Console.WriteLine("     |     |      ");
             Console.WriteLine("  {0}  |  {1}  |  {2}", board[7], board[8], board[9]);
             Console.WriteLine("     |     |      ");
+        }
+
+        public void UC4_MakeMove(char userletter)
+        {
+            int markposition;
+            while (true)
+            {
+                Console.WriteLine("Enter the position where you want to mark X or O");
+                markposition = Convert.ToInt32(Console.ReadLine());
+                if (markposition<1 || markposition > 9)
+                {
+                    Console.WriteLine("Enter a valid position");
+                }
+                else if(!board[markposition].Equals(' '))
+                {
+                    Console.WriteLine("Position isn't empty");
+                }
+                else
+                {
+                    board[markposition] = userletter;
+                    break;
+                }
+            }
+            UC3_displayBoard();
         }
     }
 }
