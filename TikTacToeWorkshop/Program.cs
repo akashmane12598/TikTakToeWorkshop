@@ -12,6 +12,7 @@ namespace TikTacToeWorkshop
             char userletter = tk.UC2_SelectCharacter();
             tk.UC3_displayBoard();
             tk.UC4_MakeMove(userletter);
+            int toss = tk.UC6_Toss();
         }
     }
 }

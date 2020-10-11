@@ -86,5 +86,24 @@ namespace TikTacToeWorkshop
             }
             UC3_displayBoard();
         }
+
+        public int UC6_Toss()
+        {
+            const int user = 0;
+            const int comp = 1;
+
+            Random random = new Random();
+            int toss = random.Next(0,2);
+            if (toss == user)
+            {
+                Console.WriteLine("User Won the Toss");
+                return user;
+            }
+            else
+            {
+                Console.WriteLine("Computer Won the Toss");
+                return comp;
+            }
+        }
     }
 }
