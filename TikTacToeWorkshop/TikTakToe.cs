@@ -8,6 +8,8 @@ namespace TikTacToeWorkshop
     {
         private char[] board;
 
+        char userLetter, compLetter;
+
         public TikTakToe()
         {
             board = new char[10];
@@ -24,7 +26,7 @@ namespace TikTacToeWorkshop
         }
         public char UC2_SelectCharacter()//Choose one letter X or O
         {
-            char userLetter, compLetter;
+            
             while (true)
             {
                 Console.WriteLine("Select X or O");
@@ -97,13 +99,41 @@ namespace TikTacToeWorkshop
             if (toss == user)
             {
                 Console.WriteLine("User Won the Toss");
+                Console.WriteLine("User's Turn!!!");
+                UC4_MakeMove(userLetter);
                 return user;
             }
             else
             {
                 Console.WriteLine("Computer Won the Toss");
+                if (userLetter == 'X' || userLetter == 'x')
+                {
+                    Console.WriteLine("Computer's Turn!!!");
+                    UC8_ComputerMove('O');
+                }
+                if (userLetter == 'O' || userLetter == 'o')
+                {
+                    Console.WriteLine("Computer's Turn!!!");
+                    UC8_ComputerMove('X');
+                }
                 return comp;
             }
+        }
+
+        public void UC8_ComputerMove(char completter)
+        {
+            int markposition;
+            while (true)
+            {
+                Random random = new Random();
+                markposition = random.Next(1,10);
+                if(board[markposition].Equals(' '))
+                {
+                    board[markposition] = completter;
+                    break;
+                }
+            }
+            UC3_displayBoard();
         }
     }
 }
