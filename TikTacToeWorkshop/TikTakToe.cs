@@ -120,6 +120,94 @@ namespace TikTacToeWorkshop
             }
         }
 
+        public void UC7_DetermineResultsPerMove(int toss)
+        {
+            int c = 1;
+            int flag = 0;
+            while (c < 9)
+            {
+                if((board[1]==userLetter && board[2]==userLetter && board[3]==userLetter) ||
+                    (board[4] == userLetter && board[5] == userLetter && board[6] == userLetter) ||
+                    (board[7] == userLetter && board[8] == userLetter && board[9] == userLetter) ||
+                    (board[1] == userLetter && board[5] == userLetter && board[9] == userLetter) ||
+                    (board[3] == userLetter && board[5] == userLetter && board[7] == userLetter) ||
+                    (board[1] == userLetter && board[4] == userLetter && board[7] == userLetter) ||
+                    (board[2] == userLetter && board[5] == userLetter && board[8] == userLetter) ||
+                    (board[3] == userLetter && board[6] == userLetter && board[9] == userLetter))
+                {
+                    Console.WriteLine("User has Won the Match. Thanks for Playing!!!");
+                    flag = 1;
+                    break;
+                }
+                if ((board[1] == compLetter && board[2] == compLetter && board[3] == compLetter) ||
+                    (board[4] == compLetter && board[5] == compLetter && board[6] == compLetter) ||
+                    (board[7] == compLetter && board[8] == compLetter && board[9] == compLetter) ||
+                    (board[1] == compLetter && board[5] == compLetter && board[9] == compLetter) ||
+                    (board[3] == compLetter && board[5] == compLetter && board[7] == compLetter) ||
+                    (board[1] == compLetter && board[4] == compLetter && board[7] == compLetter) ||
+                    (board[2] == compLetter && board[5] == compLetter && board[8] == compLetter) ||
+                    (board[3] == compLetter && board[6] == compLetter && board[9] == compLetter))
+                {
+                    Console.WriteLine("Computer has Won the Match. Thanks for Playing!!!");
+                    flag = 1;
+                    break;
+                }
+
+
+                /*int j=0;
+                for (int i = 1; i <= 9; i++)
+                {                    
+                    if(i==1 || i==4 || i == 7)
+                    {
+                        j+=2;
+                    }
+                }*/
+                if (toss == 0)
+                {
+                    if (userLetter == 'X' || userLetter == 'x')
+                    {
+                        Console.WriteLine("Computer's Turn!!!");
+                        UC8_ComputerMove('O');
+                        c++;
+                        Console.WriteLine("User's Turn!!!");
+                        UC4_MakeMove(userLetter);
+                        c++;
+                    }
+                    if (userLetter == 'O' || userLetter == 'o')
+                    {
+                        Console.WriteLine("Computer's Turn!!!");
+                        UC8_ComputerMove('X');
+                        c++;
+                        Console.WriteLine("User's Turn!!!");
+                        UC4_MakeMove(userLetter);
+                        c++;
+                    }
+                }
+                if (toss == 1)
+                {
+                    Console.WriteLine("User's Turn!!!");
+                    UC4_MakeMove(userLetter);
+                    c++;
+                    if (userLetter == 'X' || userLetter == 'x')
+                    {
+                        Console.WriteLine("Computer's Turn!!!");
+                        UC8_ComputerMove('O');
+                        c++;
+                    }
+                    if (userLetter == 'O' || userLetter == 'o')
+                    {
+                        Console.WriteLine("Computer's Turn!!!");
+                        UC8_ComputerMove('X');
+                        c++;
+                    }
+                }
+            }
+            if (flag == 0)
+            {
+                Console.WriteLine("Game has been Tied. Thanks for Playing");
+            }
+        }
+
         public void UC8_ComputerMove(char completter)
         {
             int markposition;
