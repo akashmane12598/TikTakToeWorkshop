@@ -109,12 +109,12 @@ namespace TikTacToeWorkshop
                 if (userLetter == 'X' || userLetter == 'x')
                 {
                     Console.WriteLine("Computer's Turn!!!");
-                    UC8_ComputerMove('O');
+                    UC9_ComputerMoveToBlock('O');
                 }
                 if (userLetter == 'O' || userLetter == 'o')
                 {
                     Console.WriteLine("Computer's Turn!!!");
-                    UC8_ComputerMove('X');
+                    UC9_ComputerMoveToBlock('X');
                 }
                 return comp;
             }
@@ -122,9 +122,9 @@ namespace TikTacToeWorkshop
 
         public void UC7_DetermineResultsPerMove(int toss)
         {
-            int c = 1;
+            int c = 2;
             int flag = 0;
-            while (c < 9)
+            while (c <= 10)
             {
                 if((board[1]==userLetter && board[2]==userLetter && board[3]==userLetter) ||
                     (board[4] == userLetter && board[5] == userLetter && board[6] == userLetter) ||
@@ -153,21 +153,17 @@ namespace TikTacToeWorkshop
                     break;
                 }
 
+                if (c == 10) //this 10th iteration will only compare board[] values and then control will come on this line and will break the loop
+                {
+                    break;
+                }
 
-                /*int j=0;
-                for (int i = 1; i <= 9; i++)
-                {                    
-                    if(i==1 || i==4 || i == 7)
-                    {
-                        j+=2;
-                    }
-                }*/
                 if (toss == 0)
                 {
                     if (userLetter == 'X' || userLetter == 'x')
                     {
                         Console.WriteLine("Computer's Turn!!!");
-                        UC8_ComputerMove('O');
+                        UC9_ComputerMoveToBlock('O');
                         c++;
                         Console.WriteLine("User's Turn!!!");
                         UC4_MakeMove(userLetter);
@@ -176,7 +172,7 @@ namespace TikTacToeWorkshop
                     if (userLetter == 'O' || userLetter == 'o')
                     {
                         Console.WriteLine("Computer's Turn!!!");
-                        UC8_ComputerMove('X');
+                        UC9_ComputerMoveToBlock('X');
                         c++;
                         Console.WriteLine("User's Turn!!!");
                         UC4_MakeMove(userLetter);
@@ -191,13 +187,13 @@ namespace TikTacToeWorkshop
                     if (userLetter == 'X' || userLetter == 'x')
                     {
                         Console.WriteLine("Computer's Turn!!!");
-                        UC8_ComputerMove('O');
+                        UC9_ComputerMoveToBlock('O');
                         c++;
                     }
                     if (userLetter == 'O' || userLetter == 'o')
                     {
                         Console.WriteLine("Computer's Turn!!!");
-                        UC8_ComputerMove('X');
+                        UC9_ComputerMoveToBlock('X');
                         c++;
                     }
                 }
@@ -220,6 +216,72 @@ namespace TikTacToeWorkshop
                     board[markposition] = completter;
                     break;
                 }
+            }
+            UC3_displayBoard();
+        }
+
+        public void UC9_ComputerMoveToBlock(char completter)
+        {
+            int markposition;
+            while (true)
+            {
+                char user = char.ToLower(userLetter);
+                int flag_row = 0;
+                //for horizontal rows
+                for (int i = 0; i <= 6; i += 3)
+                {
+
+                    if ((char.ToLower(board[i+1]).Equals(user)) && (char.ToLower(board[i+2]).Equals(user)))
+                    {
+                        if (board[i+3].Equals(' '))
+                        {
+                            markposition = i + 3;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }                   
+                        
+                    }
+                    if ((char.ToLower(board[i+2]).Equals(user)) && (char.ToLower(board[i+3]).Equals(user)))
+                    { 
+                        if (board[i + 1].Equals(' '))
+                        {
+                            markposition = i + 1;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }                       
+                        
+                    }
+                    if ((char.ToLower(board[i+1]).Equals(user)) && (char.ToLower(board[i+3]).Equals(user)))
+                    {
+                        if (board[i + 2].Equals(' '))
+                        {
+                            markposition = i + 2;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }                       
+                       
+                    }
+                    
+                }
+
+                if (flag_row == 0)
+                {
+                    while (true)
+                    {
+                        Random random = new Random();
+                        markposition = random.Next(1, 10);
+                        if (board[markposition].Equals(' '))
+                        {
+                            board[markposition] = completter;
+                            break;
+                        }
+                    }
+                }
+                break;
+
             }
             UC3_displayBoard();
         }
