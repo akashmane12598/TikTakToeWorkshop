@@ -227,7 +227,9 @@ namespace TikTacToeWorkshop
             {
                 char user = char.ToLower(userLetter);
                 int flag_row = 0;
-                //for horizontal rows
+
+
+                //for horizontal and diagonal rows
                 for (int i = 0; i <= 6; i += 3)
                 {
 
@@ -264,10 +266,194 @@ namespace TikTacToeWorkshop
                         }                       
                        
                     }
-                    
+
+                    //for diagonals
+                    if ((char.ToLower(board[1]).Equals(user)) && (char.ToLower(board[5]).Equals(user)))
+                    {
+                        if (board[9].Equals(' ') && flag_row == 0)
+                        {
+                            markposition = 9;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }
+
+                    }
+                    if ((char.ToLower(board[5]).Equals(user)) && (char.ToLower(board[9]).Equals(user)))
+                    {
+                        if (board[1].Equals(' ') && flag_row == 0)
+                        {
+                            markposition = 1;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }
+
+                    }
+                    if ((char.ToLower(board[1]).Equals(user)) && (char.ToLower(board[9]).Equals(user)))
+                    {
+                        if (board[5].Equals(' ') && flag_row == 0)
+                        {
+                            markposition = 5;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }
+
+                    }
+
+                    if ((char.ToLower(board[3]).Equals(user)) && (char.ToLower(board[5]).Equals(user)))
+                    {
+                        if (board[7].Equals(' ') && flag_row == 0)
+                        {
+                            markposition = 7;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }
+
+                    }
+                    if ((char.ToLower(board[3]).Equals(user)) && (char.ToLower(board[7]).Equals(user)))
+                    {
+                        if (board[5].Equals(' ') && flag_row == 0)
+                        {
+                            markposition = 5;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }
+
+                    }
+                    if ((char.ToLower(board[5]).Equals(user)) && (char.ToLower(board[7]).Equals(user)))
+                    {
+                        if (board[3].Equals(' ') && flag_row == 0)
+                        {
+                            markposition = 3;
+                            board[markposition] = completter;
+                            flag_row = 1;
+                            break;
+                        }
+
+                    }
+
+
                 }
 
-                if (flag_row == 0)
+                //For vertical columns and diagonals
+                if (flag_row == 0)   //if row isn't blocked, it will try for column 
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+
+                        if ((char.ToLower(board[i + 1]).Equals(user)) && (char.ToLower(board[i + 4]).Equals(user)))
+                        {
+                            if (board[i + 7].Equals(' '))
+                            {
+                                markposition = i + 7;
+                                board[markposition] = completter;
+                                flag_row = 1;
+                                break;
+                            }
+
+                        }
+                        if ((char.ToLower(board[i + 1]).Equals(user)) && (char.ToLower(board[i + 7]).Equals(user)))
+                        {
+                            if (board[i + 1].Equals(' '))
+                            {
+                                markposition = i + 4;
+                                board[markposition] = completter;
+                                flag_row = 1;
+                                break;
+                            }
+
+                        }
+                        if ((char.ToLower(board[i + 4]).Equals(user)) && (char.ToLower(board[i + 7]).Equals(user)))
+                        {
+                            if (board[i + 2].Equals(' '))
+                            {
+                                markposition = i + 1;
+                                board[markposition] = completter;
+                                flag_row = 1;
+                                break;
+                            }
+
+                        }
+
+                        //for diagonals
+                            if ((char.ToLower(board[1]).Equals(user)) && (char.ToLower(board[5]).Equals(user)))
+                            {
+                                if (board[9].Equals(' ') && flag_row == 0)
+                                {
+                                    markposition = 9;
+                                    board[markposition] = completter;
+                                    flag_row = 1;
+                                    break;
+                                }
+
+                            }
+                            if ((char.ToLower(board[5]).Equals(user)) && (char.ToLower(board[9]).Equals(user)))
+                            {
+                                if (board[1].Equals(' ') && flag_row == 0)
+                                {
+                                    markposition = 1;
+                                    board[markposition] = completter;
+                                    flag_row = 1;
+                                break;
+                                }
+
+                            }
+                            if ((char.ToLower(board[1]).Equals(user)) && (char.ToLower(board[9]).Equals(user)))
+                            {
+                                if (board[5].Equals(' ') && flag_row == 0)
+                                {
+                                    markposition = 5;
+                                    board[markposition] = completter;
+                                    flag_row = 1;
+                                break;
+                                }
+
+                            }
+
+                            if ((char.ToLower(board[3]).Equals(user)) && (char.ToLower(board[5]).Equals(user)))
+                            {
+                                if (board[7].Equals(' ') && flag_row == 0)
+                                {
+                                    markposition = 7;
+                                    board[markposition] = completter;
+                                    flag_row = 1;
+                                break;
+                                }
+
+                            }
+                            if ((char.ToLower(board[3]).Equals(user)) && (char.ToLower(board[7]).Equals(user)))
+                            {
+                                if (board[5].Equals(' ') && flag_row == 0)
+                                {
+                                    markposition = 5;
+                                    board[markposition] = completter;
+                                    flag_row = 1;
+                                break;
+                                }
+
+                            }
+                            if ((char.ToLower(board[5]).Equals(user)) && (char.ToLower(board[7]).Equals(user)))
+                            {
+                                if (board[3].Equals(' ') && flag_row == 0)
+                                {
+                                    markposition = 3;
+                                    board[markposition] = completter;
+                                    flag_row = 1;
+                                break;
+                                }
+
+                            }
+                        
+
+
+                    }
+                }
+
+                if (flag_row == 0) //if both row and column are not blocked, then it random position will get marked
                 {
                     while (true)
                     {
