@@ -19,6 +19,7 @@ namespace TikTacToeWorkshop
             int toss = tk.UC6_Toss();
 
             tk.UC7_DetermineResultsPerMove(toss);
+
         }
     }
 }
