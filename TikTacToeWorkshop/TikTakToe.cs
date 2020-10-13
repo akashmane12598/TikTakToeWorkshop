@@ -336,7 +336,6 @@ namespace TikTacToeWorkshop
 
                     }
 
-
                 }
 
                 //For vertical columns and diagonals
@@ -358,7 +357,7 @@ namespace TikTacToeWorkshop
                         }
                         if ((char.ToLower(board[i + 1]).Equals(user)) && (char.ToLower(board[i + 7]).Equals(user)))
                         {
-                            if (board[i + 1].Equals(' '))
+                            if (board[i + 4].Equals(' '))
                             {
                                 markposition = i + 4;
                                 board[markposition] = completter;
@@ -369,7 +368,7 @@ namespace TikTacToeWorkshop
                         }
                         if ((char.ToLower(board[i + 4]).Equals(user)) && (char.ToLower(board[i + 7]).Equals(user)))
                         {
-                            if (board[i + 2].Equals(' '))
+                            if (board[i + 1].Equals(' '))
                             {
                                 markposition = i + 1;
                                 board[markposition] = completter;
@@ -447,14 +446,14 @@ namespace TikTacToeWorkshop
                                 }
 
                             }
-                        
-
-
                     }
+                    //first user's move will be blocked, then it will choose corner
+                    UC10_TakeAvailableCorners(completter,ref flag_row);
+
                 }
 
                 if (flag_row == 0) //if both row and column are not blocked, then it random position will get marked
-                {
+                {                
                     while (true)
                     {
                         Random random = new Random();
@@ -471,5 +470,21 @@ namespace TikTacToeWorkshop
             }
             UC3_displayBoard();
         }
+
+        public void UC10_TakeAvailableCorners(char completter,ref int flag_row)
+        {
+            int[] corner = { 1, 3, 7, 9 };
+
+            foreach (int i in corner)
+            {
+                if (board[i].Equals(' ') && flag_row==0)
+                {
+                    board[i] = completter;
+                    flag_row = 1;
+                    break;
+                }
+            }
+        }
+
     }
 }
