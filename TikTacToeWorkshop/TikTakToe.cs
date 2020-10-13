@@ -124,9 +124,9 @@ namespace TikTacToeWorkshop
         {
             int c = 2;
             int flag = 0;
-            while (c <= 10)
+            while (true)
             {
-                if((board[1]==userLetter && board[2]==userLetter && board[3]==userLetter) ||
+                if ((board[1] == userLetter && board[2] == userLetter && board[3] == userLetter) ||
                     (board[4] == userLetter && board[5] == userLetter && board[6] == userLetter) ||
                     (board[7] == userLetter && board[8] == userLetter && board[9] == userLetter) ||
                     (board[1] == userLetter && board[5] == userLetter && board[9] == userLetter) ||
@@ -153,7 +153,7 @@ namespace TikTacToeWorkshop
                     break;
                 }
 
-                if (c == 10) //this 10th iteration will only compare board[] values and then control will come on this line and will break the loop
+                if (c >= 10) //this 10th iteration will only compare board[] values and then control will come on this line and will break the loop
                 {
                     break;
                 }
@@ -397,7 +397,7 @@ namespace TikTacToeWorkshop
                                     markposition = 1;
                                     board[markposition] = completter;
                                     flag_row = 1;
-                                break;
+                                    break;
                                 }
 
                             }
@@ -408,7 +408,7 @@ namespace TikTacToeWorkshop
                                     markposition = 5;
                                     board[markposition] = completter;
                                     flag_row = 1;
-                                break;
+                                    break;
                                 }
 
                             }
@@ -420,7 +420,7 @@ namespace TikTacToeWorkshop
                                     markposition = 7;
                                     board[markposition] = completter;
                                     flag_row = 1;
-                                break;
+                                    break;
                                 }
 
                             }
@@ -431,7 +431,7 @@ namespace TikTacToeWorkshop
                                     markposition = 5;
                                     board[markposition] = completter;
                                     flag_row = 1;
-                                break;
+                                    break;
                                 }
 
                             }
@@ -442,13 +442,13 @@ namespace TikTacToeWorkshop
                                     markposition = 3;
                                     board[markposition] = completter;
                                     flag_row = 1;
-                                break;
+                                    break;
                                 }
 
                             }
                     }
                     //first user's move will be blocked, then it will choose corner
-                    UC10_TakeAvailableCorners(completter,ref flag_row);
+                    UC10_TakeAvailableCorners(ref completter,ref flag_row);
 
                 }
 
@@ -471,7 +471,7 @@ namespace TikTacToeWorkshop
             UC3_displayBoard();
         }
 
-        public void UC10_TakeAvailableCorners(char completter,ref int flag_row)
+        public void UC10_TakeAvailableCorners(ref char completter,ref int flag_row)
         {
             int[] corner = { 1, 3, 7, 9 };
 
@@ -483,6 +483,28 @@ namespace TikTacToeWorkshop
                     flag_row = 1;
                     break;
                 }
+            }
+            if (flag_row == 0)
+            {
+                UC11_TakeSubsequentMoves(ref completter, ref flag_row);
+                /*if (board[5].Equals(' '))
+                {
+                    board[5] = completter;
+                    flag_row = 1;
+                }*/
+            }
+        }
+
+        public void UC11_TakeSubsequentMoves(ref char completter, ref int flag_row)
+        {
+            if(board[5].Equals(' '))
+            {
+                board[5] = completter;
+                flag_row = 1;
+            }
+            else
+            {
+                flag_row = 0;
             }
         }
 
